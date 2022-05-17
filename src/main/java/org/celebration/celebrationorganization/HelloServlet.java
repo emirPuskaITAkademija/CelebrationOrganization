@@ -1,14 +1,16 @@
 package org.celebration.celebrationorganization;
 
-import java.io.*;
-import java.util.List;
-
 import jakarta.inject.Inject;
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
-import org.celebration.celebrationorganization.ejb.service.UserService;
-import org.celebration.celebrationorganization.ejb.service.UserServiceLocal;
-import org.celebration.celebrationorganization.entity.User;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.celebration.celebrationorganization.ejb.user.service.UserServiceLocal;
+import org.celebration.celebrationorganization.ejb.user.entity.User;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 
 @WebServlet(name = "helloServlet", value = "/hello-servlet")
 public class HelloServlet extends HttpServlet {
@@ -23,6 +25,8 @@ public class HelloServlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+
         response.setContentType("text/html");
 
         List<User> users = userServiceLocal.findAll();

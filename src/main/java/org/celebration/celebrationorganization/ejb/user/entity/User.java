@@ -1,4 +1,4 @@
-package org.celebration.celebrationorganization.entity;
+package org.celebration.celebrationorganization.ejb.user.entity;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
@@ -8,14 +8,19 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import org.celebration.celebrationorganization.ejb.town.entity.Town;
 
 import java.io.Serializable;
 @Entity
 @Table(name = "users")
+@NamedQueries(
+        @NamedQuery(name = "User.findByUsername", query= "SELECT u FROM User u WHERE u.username=:username")
+)
 public class User implements Serializable {
     @Size(max = 255)
     @Column(name = "username")
@@ -57,9 +62,9 @@ public class User implements Serializable {
     @JoinColumn(name = "id_privilege", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Privilege privilege;
-//    @JoinColumn(name = "town_id", referencedColumnName = "id")
-//    @ManyToOne(optional = false)
-//    private Town town;
+    @JoinColumn(name = "town_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Town town;
 
     public static final String ACTIVE = "ACTIVE";
     public static final String DEACTIVATED = "DEACTIVATED";
@@ -83,13 +88,13 @@ public class User implements Serializable {
         this.privilege = privilege;
     }
 
-//    public Town getTown() {
-//        return town;
-//    }
-//
-//    public void setTown(Town town) {
-//        this.town = town;
-//    }
+    public Town getTown() {
+        return town;
+    }
+
+    public void setTown(Town town) {
+        this.town = town;
+    }
 
 
 //    //    @XmlTransient

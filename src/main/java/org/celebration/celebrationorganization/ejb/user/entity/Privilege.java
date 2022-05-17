@@ -1,4 +1,4 @@
-package org.celebration.celebrationorganization.entity;
+package org.celebration.celebrationorganization.ejb.user.entity;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
@@ -10,7 +10,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
-import jakarta.xml.bind.annotation.XmlTransient;
 
 import java.io.Serializable;
 import java.util.List;
