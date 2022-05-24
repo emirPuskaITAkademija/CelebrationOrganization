@@ -8,5 +8,7 @@
         <class>org.celebration.celebrationorganization.ejb.user.entity.Privilege</class>
         <class>org.celebration.celebrationorganization.ejb.user.entity.User</class>
         <class>org.celebration.celebrationorganization.ejb.town.entity.Town</class>
+        <class>org.celebration.celebrationorganization.ejb.celebration.entity.Celebration</class>
+        <class>org.celebration.celebrationorganization.ejb.celebration.cost.entity.CelebrationCost</class>
     </persistence-unit>
 </persistence>

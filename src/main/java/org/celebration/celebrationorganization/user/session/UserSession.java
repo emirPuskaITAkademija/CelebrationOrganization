@@ -20,6 +20,11 @@ public enum UserSession {
         }
     }
 
+
+    public String getSessionKey() {
+        return sessionKey;
+    }
+
     public User getFromSession(HttpServletRequest request){
         HttpSession session = request.getSession();
         return (User) session.getAttribute(sessionKey);

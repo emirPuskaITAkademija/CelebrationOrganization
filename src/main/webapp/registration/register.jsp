@@ -74,7 +74,7 @@ It also provides a framework for integrating the existing custom tags with the J
 
         <div class="col-md-6">
             <button class="col-md-8 btn btn-info" type="submit" value="Submit">Register</button>
-            <button class="col-md-8 btn btn-link" type="button" onclick="location.href = 'authentication';">Back to
+            <button class="col-md-8 btn btn-link" type="button" onclick="location.href = 'login';">Back to
                 login page
             </button>
         </div>

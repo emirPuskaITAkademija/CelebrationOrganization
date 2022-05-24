@@ -19,15 +19,15 @@ public class AuthenticateDispatcherServlet extends HttpServlet {
     private UserServiceLocal userServiceLocal;
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         AuthenticationModel authenticationModel = AuthenticationModel.builder()
                 .username(request.getParameter("username"))
                 .password(request.getParameter("password"))
                 .build();
+        //user -> username
         User user = userServiceLocal.login(authenticationModel);
         if(user != null){
             UserSession.USER.addToSession(user, request);
-            RequestDispatcher dashBoardDispatcher = request.getRequestDispatcher(Routes.DASHBOARD);
+            RequestDispatcher dashBoardDispatcher = request.getRequestDispatcher(Routes.DASHBOARD_ACCESS);
             dashBoardDispatcher.forward(request, response);
         }else{
             RequestDispatcher loginDispatcher = request.getRequestDispatcher(Routes.AUTHENTICATION);

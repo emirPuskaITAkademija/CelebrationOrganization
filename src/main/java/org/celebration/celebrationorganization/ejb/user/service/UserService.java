@@ -51,18 +51,23 @@ public class UserService extends AbstractService<User> implements UserServiceLoc
         return entityManager;
     }
 
+    //nedim.ziga  1. unio dobar password
+    //nedim.ziga  2. unio loš password
+    //neila.hasanovic
     @Override
     public User login(AuthenticationModel authenticationModel) {
         User user = null;
         try{
             user = findByUsername(authenticationModel.getUsername());
-            //emir123  -> HASH function -> ekaemwkm3k34m34m35m3kmrkwmrkem
+            if(user == null){
+                return null;
+            }
             String plainPassword = authenticationModel.getPassword();
             String hashedPassword = user.getPassword();
             if (!pbkdf2PasswordHash.verify(plainPassword.toCharArray(), hashedPassword)) {
-                throw new NoResultException("Worng password");
+                user = null;
+                throw new NoResultException("Wrong password");
             }
-            return user;
         }catch (NonUniqueResultException | NoResultException e){
             Logger.getLogger("USERNAME QUERY").log(Level.INFO, e.getMessage());
         }
