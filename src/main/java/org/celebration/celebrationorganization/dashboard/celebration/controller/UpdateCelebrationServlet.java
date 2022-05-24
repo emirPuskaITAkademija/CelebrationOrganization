@@ -37,7 +37,7 @@ public class UpdateCelebrationServlet extends HttpServlet {
             Celebration celebration = celebrationService.find(celebrationId);
             if (celebration != null) {
                 String celebrationDate = request.getParameter("celebrationDate");
-                SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-DD");
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
                 Date date = format.parse(celebrationDate);
                 User user = UserSession.USER.getFromSession(request);
 
