@@ -1,5 +1,6 @@
 package org.celebration.celebrationorganization.ejb.user.entity;
 
+import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -10,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
+import jakarta.xml.bind.annotation.XmlTransient;
 
 import java.io.Serializable;
 import java.util.List;
@@ -50,10 +52,12 @@ public class Privilege implements Serializable {
     }
 
 
-    //    @XmlTransient
+    @XmlTransient
+    @JsonbTransient
     public List<User> getUserList() {
         return userList;
     }
+
 
     public void setUserList(List<User> userList) {
         this.userList = userList;

@@ -1,6 +1,7 @@
 package org.celebration.celebrationorganization.ejb.user.service;
 
 import jakarta.ejb.Local;
+import jakarta.transaction.Transactional;
 import org.celebration.celebrationorganization.ejb.user.entity.User;
 import org.celebration.celebrationorganization.user.authentication.model.AuthenticationModel;
 import org.celebration.celebrationorganization.user.registration.model.RegistrationModel;
@@ -15,6 +16,7 @@ public interface UserServiceLocal {
 
     void edit(User user);
 
+    @Transactional
     void remove(User user);
 
     User find(Object id);

@@ -18,6 +18,7 @@
     </properties>
 
     <dependencies>
+        <!-- prosle godine bila java EE..sad jakarta EE-->
         <dependency>
             <groupId>jakarta.platform</groupId>
             <artifactId>jakarta.jakartaee-api</artifactId>

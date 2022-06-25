@@ -1,5 +1,6 @@
 package org.celebration.celebrationorganization.ejb.user.entity;
 
+import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -15,6 +16,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import jakarta.xml.bind.annotation.XmlTransient;
 import org.celebration.celebrationorganization.ejb.celebration.entity.Celebration;
 import org.celebration.celebrationorganization.ejb.town.entity.Town;
 
@@ -24,7 +26,7 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 @NamedQueries(
-        @NamedQuery(name = "User.findByUsername", query= "SELECT u FROM User u WHERE u.username=:username")
+        @NamedQuery(name = "User.findByUsername", query = "SELECT u FROM User u WHERE u.username=:username")
 )
 public class User implements Serializable {
     @Size(max = 255)
@@ -41,7 +43,8 @@ public class User implements Serializable {
     private String surname;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
-    @Basic(optional=false)//if the field contains email address consider using this annotation to enforce field validation
+    @Basic(optional = false)
+//if the field contains email address consider using this annotation to enforce field validation
     @NotNull()
     @Size(min = 1, max = 255)
     @Column(name = "email")
@@ -51,9 +54,11 @@ public class User implements Serializable {
     @Size(min = 1, max = 55)
     @Column(name = "contact")
     private String contact;
-    @Basic(optional = false)//if the field contains email address consider using this annotation to enforce field validation
+    @Basic(optional = false)
+//if the field contains email address consider using this annotation to enforce field validation
     @NotNull()//if the field contains email address consider using this annotation to enforce field validation
-    @Size(min = 1, max = 11)//if the field contains email address consider using this annotation to enforce field validation
+    @Size(min = 1, max = 11)
+//if the field contains email address consider using this annotation to enforce field validation
     @Column(name = "status")
     private String status;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userCreator")
@@ -85,14 +90,17 @@ public class User implements Serializable {
         this.id = id;
     }
 
+    @XmlTransient
     public Privilege getPrivilege() {
         return privilege;
     }
 
+    @XmlTransient
     public void setPrivilege(Privilege privilege) {
         this.privilege = privilege;
     }
 
+    @JsonbTransient
     public Town getTown() {
         return town;
     }
@@ -117,6 +125,7 @@ public class User implements Serializable {
         hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
+
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -129,6 +138,7 @@ public class User implements Serializable {
         }
         return true;
     }
+
     @Override
     public String toString() {
         return name + " " + surname + " [" + id + " ]";
